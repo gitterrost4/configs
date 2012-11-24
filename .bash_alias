@@ -1,4 +1,5 @@
 #!/bin/bash
+alias prj_add_changed="cvs -q diff |grep Index| sed \"s/Index: //\"|while read line; do prj padd \$line; done"
 alias xmplayer="mplayer2 -vo gl_nosw "
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 alias awconf='vi ~/.config/awesome/rc.lua'

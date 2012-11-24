@@ -60,6 +60,7 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 [[ -f /etc/profile.d/bash-completion.sh ]] && source /etc/profile.d/bash-completion.sh
+export LANG=en_US.UTF-8
 pgrep udisks-glue >/dev/null
 if [ $? -eq 1 ];then
   echo "Starting udisks-glue"
@@ -73,5 +74,6 @@ export PATH=$PATH:/sbin
 export PS1="\[\033[0;31m\]\t \[\033[0;32m\][\!] \[\033[0m\]\u:\[\033[1;33m\]\w\`if [ \$? -ne "0" ]; then echo '\[\033[1;31m\] F '; fi\`\[\033[0m\]\$ "
 source /usr/share/cdargs/cdargs-bash.sh
 source ~/.bash_alias
+export EDITOR=/usr/bin/vim
 
 export WINEARCH=win32
