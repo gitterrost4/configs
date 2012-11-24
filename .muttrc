@@ -7,10 +7,12 @@ set certificate_file =~/.mutt/certificates_work
 
 set imap_idle = yes
 set charset="utf-8"
+set editor="vi"
 ignore *
 unignore From:
-unignore Subject:
 unignore To:
+unignore Date:
+unignore Subject:
 
 macro index y "c?" # ESC+1 takes to first INBOX
 macro index ,1 "s=bugzilla-daemon<return><return>$<return>"
