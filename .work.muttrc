@@ -1,4 +1,4 @@
-source ~/.mutt_servers #Login-Infos
+source ~/.work.mutt_servers #Login-Infos
 set spoolfile = "+INBOX"
 set postponed = "+/Drafts"
 set header_cache =~/.mutt/cache/headers_work
