@@ -1,0 +1,4 @@
+#!/bin/bash
+alias prj_add_changed="cvs -q diff |grep Index| sed \"s/Index: //\"|while read line; do prj padd \$line; done"
+alias awconf="vi ~/.config/awesome/rc.lua"
+alias td='todo --filter '\''+children'\'''
