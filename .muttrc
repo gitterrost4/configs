@@ -1,39 +1,40 @@
-source ~/.mutt_servers #Login-Infos
+source ~/.mutt_servers
 set spoolfile = "+INBOX"
-set postponed = "+/Drafts"
-set header_cache =~/.mutt/cache/headers_work
-set message_cachedir =~/.mutt/cache/bodies_work
-set certificate_file =~/.mutt/certificates_work
-
+set postponed = "+[Google Mail]/Drafts"
+set header_cache =~/.mutt/cache/headers
+set message_cachedir =~/.mutt/cache/bodies
+set certificate_file =~/.mutt/certificates
 set imap_idle = yes
 set charset="utf-8"
+set editor="vi"
 ignore *
 unignore From:
-unignore Subject:
 unignore To:
+unignore Date:
+unignore Subject:
 
-macro index y "c?" # ESC+1 takes to first INBOX
-macro index ,1 "s=bugzilla-daemon<return><return>$<return>"
-macro index ,2 "s=Bugzilla_Nervmails<return><return>$<return>"
-macro index ,3 "s=MoMeePro<return><return>$<return>"
-macro index ,4 "s=Sanity<return><return>$<return>"
-macro index ,5 "s=Blubberecke<return><return>$<return>"
-macro pager ,1 "s=bugzilla-daemon<return><return>$<return>"
-macro pager ,2 "s=Bugzilla_Nervmails<return><return>$<return>"
-macro pager ,3 "s=MoMeePro<return><return>$<return>"
-macro pager ,4 "s=Sanity<return><return>$<return>"
-macro pager ,5 "s=Blubberecke<return><return>$<return>"
+macro index y "c?" 
 macro index i "c=INBOX<return>"
-macro index <Return> <display-message><sync-mailbox>
-set timeout=90
-set mail_check=60
-unset imap_passive
-color status black green
-set beep_new
+macro index ,1 "s=Piraten<return><return>$"
+macro index ,2 "s=cmus-devel<return><return>$"
+macro index ,3 "s=[spielerunde_halle]<return><return>$"
+macro index ,4 "s=Twitter<return><return>$"
+macro index ,5 "s=getDigital<return><return>$"
+macro index <Return> "<display-message><sync-mailbox>"
 set auto_tag
+set timeout=60
+set mail_check=30
+unset imap_passive
+color status white red
+set beep_new
 
 color index brightred default "~N|~O"
+
 set alias_file= ~/.mutt/aliases
 set sort_alias= alias
 set reverse_alias=yes
 source $alias_file
+
+bind index <insert> tag-entry
+macro index * "T*<return>"
+
