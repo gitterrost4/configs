@@ -103,20 +103,58 @@ require "downloads"
 require "downloads_chrome"
 
 -- Example using xdg-open for opening downloads / showing download folders
---downloads.add_signal("open-file", function (file, mime)
---    luakit.spawn(string.format("xdg-open %q", file))
---    return true
---end)
+downloads.add_signal("open-file", function (file, mime)
+    luakit.spawn(string.format("xdg-open %q", file))
+    return true
+end)
 
 -- Add vimperator-like link hinting & following
 require "follow"
+follow.stylesheet = [===[
+#luakit_follow_overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
 
+#luakit_follow_overlay .hint_overlay {
+    display: block;
+    position: absolute;
+    background-color: #ffff99;
+    border: 1px dotted #000;
+    opacity: 0.5;
+    z-index: 10001;
+}
+
+#luakit_follow_overlay .hint_label {
+    display: block;
+    position: absolute;
+    background-color: #F1EB4B;
+    border: 1px solid #000;
+    color: #000;
+    font-size: 15px;
+    font-family: inconsolata:
+    opacity: 0.7;
+    z-index: 10002;
+    border-radius: 3px;
+    text-transform:uppercase;
+}
+
+#luakit_follow_overlay .hint_overlay_body {
+    background-color: #ff0000;
+}
+
+#luakit_follow_overlay .hint_selected {
+    background-color: #00ff00 !important;
+}
+]===]
+--
 -- Use a custom charater set for hint labels
---local s = follow.label_styles
---follow.label_maker = s.sort(s.reverse(s.charset("asdfqwerzxcv")))
+local s = follow.label_styles
+follow.label_maker = s.sort(s.reverse(s.charset("aoeuhtns")))
 
 -- Match only hint labels
---follow.pattern_maker = follow.pattern_styles.match_label
+follow.pattern_maker = follow.pattern_styles.match_label
 
 -- Add command history
 require "cmdhist"
