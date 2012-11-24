@@ -1,11 +1,16 @@
 URxvt*font:		xft:inconsolata:style=Regular:pixelsize=20
 URxvt*background:	#000000
 URxvt*foreground:	#FFFFFF
-URxvt*scrollBar: false
+URxvt.urgentOnBell:	true
 URxvt.perl-ext-common: url-select
-URxvt.urlLauncher:     firefox-bin
+URxvt.urlLauncher:     luakit
 URxvt.underlineURLs:   true
 URxvt.keysym.M-u:      perl:url-select:select_next
 URxvt.urgentOnBell: true
-URxvt*secondaryWheel: true
-
+URxvt.secondaryWheel: true
+URxvt.scrollBar: false
+URxvt.secondaryScroll: false
+emacs*Background: Black
+emacs*Foreground: White
+emacs*pointerColor: Green
+emacs*cursorColor: Green
