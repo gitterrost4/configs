@@ -1,33 +1,27 @@
-let g:Imap_UsePlaceHolders =0
+if &term=="screen"
+    set t_Co=256
+endif
+if &term=="screen-256color"
+    set t_Co=256
+endif
 syntax on
 filetype plugin on
+filetype indent on
+set expandtab
+set tabstop=4
+set sw=4
 set cindent
 set smartindent
 set autoindent
-set expandtab
-set tabstop=2
-set shiftwidth=2
-set grepprg=grep\ -nH\ $*
-filetype indent on
+autocmd BufNewFile *.pl execute '0read !echo "\#\!/usr/bin/perl"'|2
 let g:tex_flavor='latex'
 set backupdir=~/tmp//
 set directory=~/tmp//
-let g:netrw_keepdir= 0
-highlight link netrwDir Operator
-highlight link netrwComment Constant
-"highlight link netrwExe Function
-let g:netrw_localcopycmd="cp -r"
-let g:netrw_local_rmdir="rm -r"
-let g:netrw_liststyle=1
-let g:netrw_hide=1
-let g:netrw_list_hide="\\(^\\|\\s\\s\\)\\zs\\.\\S\\+"
-let g:netrw_altv=1
-let g:netrw_maxfilenamelen=64
-let dspace=system('discspace')
-hi Comment ctermfg=yellow
 set ic
+set linebreak
+highlight LineNr term=bold cterm=NONE ctermfg=Black ctermbg=White gui=NONE guifg=DarkGrey guibg=NONE
 set number
-hi LineNr ctermbg=White ctermfg=Black
+hi Comment ctermfg=yellow
 highlight Search cterm=bold ctermfg=Red ctermbg=Black guifg=Red guibg=Black
 highlight Special term=bold ctermfg=176 guifg=Orange                                                                                                                                
 set wildmenu
@@ -36,3 +30,19 @@ set undodir=~/.vim/undodir
 set undofile
 set iskeyword+=:
 let g:tex_isk = &isk
+" Search for selected text, forwards or backwards.
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+"Unnamed Register to Global register
+map ,p :let @+=@@<CR>
+hi PmenuSel ctermbg=7 guibg=Grey ctermfg=Black                                                                                                                                                                              
+set guifont=inconsolata
+set pastetoggle=<F2>
