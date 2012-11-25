@@ -6,5 +6,6 @@ keysym Super_R = ISO_Level3_Shift
 keysym a = a A a A adiaeresis Adiaeresis adiaeresis Adiaeresis
 keysym o = o O o O odiaeresis Odiaeresis odiaeresis Odiaeresis
 keysym u = u U u U udiaeresis Udiaeresis udiaeresis Udiaeresis
-keycode 94 = slash question slash question
+keysym e = e E e E EuroSign EuroSign EuroSign EuroSign
+keycode 94 = slash question
 
