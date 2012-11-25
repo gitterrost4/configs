@@ -10,38 +10,26 @@ filetype indent on
 set expandtab
 set tabstop=4
 set sw=4
+set cindent
+set smartindent
 set autoindent
-"set autochdir
-autocmd FileType php noremap <C-4> :!$HOME/bin/php -l %<CR>
 autocmd BufNewFile *.pl execute '0read !echo "\#\!/usr/bin/perl"'|2
-"map ,f :TlistToggle<CR>
-filetype plugin on
-set backupdir=~/.vim/tmp//
-set directory=~/.vim/tmp//
-com FL tabnew ~/etc/filelist
-com PAdd silent execute "!prj padd %" | redraw!
-com PClear silent execute "!prj pclear" | redraw!
-hi Comment ctermfg=yellow
-"if has("gui_running")
-"GUI is running or is about to start.
-"   " Maximize gvim window.
-"  set lines=101 columns=200
-"endif
-let g:netrw_liststyle=1
-let g:netrw_list_hide="\\(^\\|\\s\\s\\)\\zs\\.\\S\\+"
-let g:netrw_keepdir=0
-let g:netrw_altv=1
-"<Plug>SQLSetType
-" mysql
-let g:sql_type_default = 'mysql'
+let g:tex_flavor='latex'
+set backupdir=~/tmp//
+set directory=~/tmp//
 set ic
 set linebreak
 highlight LineNr term=bold cterm=NONE ctermfg=Black ctermbg=White gui=NONE guifg=DarkGrey guibg=NONE
 set number
+hi Comment ctermfg=yellow
+highlight Search cterm=bold ctermfg=Red ctermbg=Black guifg=Red guibg=Black
+highlight Special term=bold ctermfg=176 guifg=Orange                                                                                                                                
+set wildmenu
+set hlsearch
 set undodir=~/.vim/undodir
 set undofile
-set hlsearch
-set wildmenu
+set iskeyword+=:
+let g:tex_isk = &isk
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
@@ -53,24 +41,28 @@ vnoremap <silent> # :<C-U>
   \gvy?<C-R><C-R>=substitute(
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
-"inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
-set tabpagemax=50
 "Unnamed Register to Global register
 map ,p :let @+=@@<CR>
-set encoding=latin1
-"set path+=config,funktionen,
-let g:EclimPhpHtmlValidate=0
 hi PmenuSel ctermbg=7 guibg=Grey ctermfg=Black                                                                                                                                                                              
+set guifont=inconsolata
+set pastetoggle=<F2>
+
+"Work-specific
+com FL tabnew ~/etc/filelist "only for work
+com PAdd silent execute "!prj padd %" | redraw! "only for work
+com PClear silent execute "!prj pclear" | redraw! "only for work
+"<Plug>SQLSetType
+" mysql
+let g:sql_type_default = 'mysql'
+set tabpagemax=50
+set encoding=latin1
+let g:EclimPhpHtmlValidate=0
 map ,r :LocateFile<CR>
 let g:EclimLocateFileDefaultAction="tabnew"
 set runtimepath+=~/.vim/tagbar
-hi Search cterm=bold ctermbg=black guibg=black ctermfg=red guifg=red
 map <F8> :TagbarOpenAutoClose<CR>:lopen<CR>
 let g:tagbar_iconchars = ['▾', '▸']
 let g:tagbar_foldlevel = 0
 let g:tagbar_compact = 1
 let g:tagbar_autoshowtag = 0
 map <F3> :PhpSearchContext<CR>
-set guifont=inconsolata
-set pastetoggle=<F2>
-
