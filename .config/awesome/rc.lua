@@ -298,7 +298,7 @@ globalkeys = awful.util.table.join(
     awful.key({                   }, "Pause", keyboardSwitch),
     -- Shared Commands
     awful.key({ modkey, "Mod1"    }, "f", function () awful.util.spawn("luakit") end),
-    awful.key({ modkey, "Mod1"    }, "c", function () awful.util.spawn("tmux new-window -n \"cmus\" \"cmus\"\; split-window -h \"sleep 0.25; cmus-lyrics\"\; select-pane -L")); 
+    awful.key({ modkey, "Mod1"    }, "c", function () awful.util.spawn("tmux new-window -n \"cmus\" \"cmus\"\; split-window -h \"sleep 0.25; cmus-lyrics\"\; select-pane -L") end ), 
     awful.key({ modkey, "Mod1"    }, "p", function () awful.util.spawn("tmux new-window \"irssi -c localhost -w ".. ircpass .."\"") end),
     awful.key({ modkey, "Mod1"    }, "n", function () awful.util.spawn("tmux new-window \"newsbeuter\"") end),
     awful.key({ modkey, "Mod1"    }, "x", function () awful.util.spawn("tmux new-window \"mc\"") end),
