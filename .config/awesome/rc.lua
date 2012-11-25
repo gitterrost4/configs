@@ -113,18 +113,34 @@ layouts =
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-taglayouts = 
-{
-  awful.layout.suit.max.fullscreen,
-  awful.layout.suit.max.fullscreen,
-  awful.layout.suit.max.fullscreen,
-  awful.layout.suit.max.fullscreen,
-  awful.layout.suit.max,
-}
-tags = {}
-for s = 1, screen.count() do
+if(screen.count()==1) then
+    taglayouts1 = 
+    {
+        awful.layout.suit.fair,
+        awful.layout.suit.fair,
+        awful.layout.suit.floating,
+        awful.layout.suit.fair,
+    }
+    tagtable1 = { "1-terminal", "2-browser", "3-other"  }
+    tags = {}
+    tags[1] = awful.tag(tagtable1,1,taglayouts1);
+else
+    taglayouts1 = 
+    {
+        awful.layout.suit.max.fullscreen,
+        awful.layout.suit.floating,
+    }
+    taglayouts2 = 
+    {
+        awful.layout.suit.fair,
+        awful.layout.suit.fair,
+    }
+    tagtable1 = { "1-browser", "2-other" }
+    tagtable2 = { "1-terminal" }
+    tags = {}
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "1-terminal", "2-browser", "3-Mplayer", "4-other", "5-working" }, s, taglayouts)
+    tags[1] = awful.tag(tagtable1, 1, taglayouts1)
+    tags[2] = awful.tag(tagtable2, 2, taglayouts2)
 end
 -- vicious.register(mutewidget, vicious.widgets.volume, '<span size="12800">$2</span>', 2, "Master")
 -- Create a systray
@@ -288,25 +304,12 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Mod1"    }, "n", function () awful.util.spawn("tmux new-window \"newsbeuter\"") end),
     awful.key({ modkey, "Mod1"    }, "x", function () awful.util.spawn("tmux new-window \"mc\"") end),
     awful.key({ modkey, "Mod1"    }, "l", function () awful.util.spawn("xscreensaver-command -lock") end),
-    -- Home Commands
-    awful.key({ modkey, "Mod1"    }, "j", function () awful.util.spawn("jdownloader") end),
+    -- Work Commands
+    awful.key({ modkey, "Mod1"    }, "h", function () awful.util.spawn("hibernate") end),
+    awful.key({ modkey, "Mod1"    }, "m", function () awful.util.spawn("mysqlstart") end),
     awful.key({ modkey, "Mod1"    }, "t", function () 
       awful.util.spawn("tmux new-window \"mutt\"\\; split-window -h \"mutt -F ~/.work.muttrc\"")
     end),
-    awful.key({ modkey, "Mod1"    }, "m", function () awful.util.spawn("minecraft") end),
-    awful.key({                   }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight =100") end),
-    awful.key({                   }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight =0") end),
-    awful.key({                   }, "XF86WLAN", function () awful.util.spawn("togglewlan toggle") end),
-
-    --Soundeffects
-    awful.key({ modkey, "Mod1"    }, "F1", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/buzzer.mp3") end),
-    awful.key({ modkey, "Mod1"    }, "F2", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/cricket.mp3") end),
-    awful.key({ modkey, "Mod1"    }, "F3", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/jeopardy.mp3") end),
-    awful.key({ modkey, "Mod1"    }, "F4", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/trombone.mp3") end),
-    awful.key({ modkey, "Mod1"    }, "F5", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/badummtss.mp3") end),
-    awful.key({ modkey, "Mod1"    }, "F6", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/bazinga.mp3") end),
-    awful.key({ modkey, "Mod1"    }, "Delete", function () awful.util.spawn("killall mplayer") end)
-    
 
 )
 
