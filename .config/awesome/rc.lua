@@ -8,7 +8,6 @@ require("awful")
 require("awful.autofocus")
 require("awful.rules")
 require("awful.remote")
-require("blingbling")
 -- Theme handling library
 require("beautiful")
 -- Notification library
@@ -308,7 +307,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Mod1"    }, "h", function () awful.util.spawn("hibernate") end),
     awful.key({ modkey, "Mod1"    }, "m", function () awful.util.spawn("mysqlstart") end),
     awful.key({ modkey, "Mod1"    }, "t", function () 
-      awful.util.spawn("tmux new-window \"mutt\"\\; split-window -h \"mutt -F ~/.work.muttrc\"")
+        awful.util.spawn("tmux new-window \"mutt\"")
     end),
 
 )
@@ -380,43 +379,69 @@ root.keys(globalkeys)
 -- }}}
 
 -- {{{ Rules
-awful.rules.rules = {
-    -- All clients will match this rule.
-    { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = true,
-                     keys = clientkeys,
-                     maximized_vertical   = false,
-                     maximized_horizontal = false,
-                     buttons = clientbuttons,
-                     size_hints_honor = false,
---                     fullscreen = true,
-
-                     tag = tags[1][4]} },
---    { rule = { class = "MuPDF" },
---      properties = { fullscreen=true  } },
---    { rule = { class = "mupdf" },
---      properties = { fullscreen=true } },
-    { rule = { class = "feh" },
-      properties = { tag = tags[1][1] } },
-    { rule = { class = "luakit" },
-      properties = { tag = tags[1][2] } },
-    { rule = { class = "Firefox" },
-      properties = { tag = tags[1][2] } },
-    { rule = { class = "Chromium" },
-      properties = { tag = tags[1][2], fullscreen = true } },
-    { rule = { name = "<unknown>" },
-      properties = { fullscreen=true, floating=true, tag = tags[1][2] } },
-    { rule = { class = "Exe"}, 
-      properties = {floating = true, tag = tags[1][2]} },
-    { rule = { class = "MPlayer" },
-      properties = { tag = tags[1][3] } },
-    { rule = { class = "mplayer2" },
-      properties = { tag = tags[1][3] } },
-    { rule = { class = "URxvt" },
-      properties = { tag = tags[1][1] } },
-}
+if screen.count()==1 then
+    awful.rules.rules = {
+        -- All clients will match this rule.
+        { rule = { },
+        properties = { border_width = beautiful.border_width,
+        border_color = beautiful.border_normal,
+        focus = true,
+        keys = clientkeys,
+        buttons = clientbuttons,
+        tag = tags[1][3],
+        maximized_vertical   = false,
+        maximized_horizontal = false,
+        size_hints_honor = false,
+        }
+        },
+        { rule = { class = "MPlayer" },
+        properties = { floating = true } },
+        { rule = { class = "pinentry" },
+        properties = { floating = true } },
+        { rule = { class = "gimp" },
+        properties = { floating = true } },
+        -- Set Firefox to always map on tags number 2 of screen 1.
+        { rule = { class = "Firefox" },
+        properties = { tag = tags[1][2], fullscreen = true } },
+        { rule = { class = "Chromium" },
+        properties = { tag = tags[1][2] } },
+        { rule = { class = "URxvt" },
+        properties = { tag = tags[1][1], fullscreen=true } },
+        { rule = { name = "MySQL" },
+        properties = { tag = tags[1][4] } },
+    }
+else
+    awful.rules.rules = {
+        -- All clients will match this rule.
+        { rule = { },
+        properties = { border_width = beautiful.border_width,
+        border_color = beautiful.border_normal,
+        focus = true,
+        keys = clientkeys,
+        buttons = clientbuttons,
+        --callback = awful.placement.under_mouse
+         tag = tags[1][2],
+         maximized_vertical   = false,
+         maximized_horizontal = false,
+         size_hints_honor = false,
+        } },
+        { rule = { class = "MPlayer" },
+        properties = { floating = true } },
+        { rule = { class = "pinentry" },
+        properties = { floating = true } },
+        { rule = { class = "gimp" },
+        properties = { floating = true } },
+        -- Set Firefox to always map on tags number 2 of screen 1.
+        { rule = { class = "Firefox" },
+        properties = { tag = tags[1][1] } },
+        { rule = { class = "Chromium" },
+        properties = { tag = tags[1][1] } },
+      { rule = { class = "URxvt" },
+        properties = { tag = tags[2][1], fullscreen=true } },
+       { rule = { name = "MySQL" },
+        properties = { tag = tags[2][2] } },
+  }
+end
 -- }}}
 
 -- {{{ Signals

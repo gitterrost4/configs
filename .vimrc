@@ -46,3 +46,23 @@ map ,p :let @+=@@<CR>
 hi PmenuSel ctermbg=7 guibg=Grey ctermfg=Black                                                                                                                                                                              
 set guifont=inconsolata
 set pastetoggle=<F2>
+
+"Work-specific
+com FL tabnew ~/etc/filelist "only for work
+com PAdd silent execute "!prj padd %" | redraw! "only for work
+com PClear silent execute "!prj pclear" | redraw! "only for work
+"<Plug>SQLSetType
+" mysql
+let g:sql_type_default = 'mysql'
+set tabpagemax=50
+set encoding=latin1
+let g:EclimPhpHtmlValidate=0
+map ,r :LocateFile<CR>
+let g:EclimLocateFileDefaultAction="tabnew"
+set runtimepath+=~/.vim/tagbar
+map <F8> :TagbarOpenAutoClose<CR>:lopen<CR>
+let g:tagbar_iconchars = ['▾', '▸']
+let g:tagbar_foldlevel = 0
+let g:tagbar_compact = 1
+let g:tagbar_autoshowtag = 0
+map <F3> :PhpSearchContext<CR>

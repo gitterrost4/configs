@@ -1,4 +1,4 @@
-URxvt*font:		xft:inconsolata:style=Regular:pixelsize=16
+URxvt*font:		xft:inconsolata:style=Regular:pixelsize=20
 URxvt*background:	#000000
 URxvt*foreground:	#FFFFFF
 URxvt.urgentOnBell:	true
