@@ -1,5 +1,9 @@
 -- Local config of gitterrost4
 -- Standard awesome library
+function nprint(arg)
+  print(arg)
+  io.flush()
+end
 require("awful")
 require("awful.autofocus")
 require("awful.rules")
@@ -18,6 +22,7 @@ require('delightful.widgets.datetime')
 require('delightful.widgets.memory')
 require('delightful.widgets.network')
 beautiful.init(awful.util.getdir("config") .. "/themes/default/theme.lua")
+require('pass')
 --
 --
 --
@@ -36,6 +41,7 @@ delightful_config = {
     },
 }
 
+activeScreen=1;
 -- Prepare the container that is used when constructing the wibox
 local delightful_container = { widgets = {}, icons = {} }
 if install_delightful then
@@ -118,12 +124,8 @@ taglayouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
---    tags[s] = awful.tag({ "1-terminal", "2-browser", "3-IM", "4-mail", "5-news", "6-cmus", "7-other", "8-Xfe", "9-working" }, s, taglayouts)
     tags[s] = awful.tag({ "1-terminal", "2-browser", "3-Mplayer", "4-other", "5-working" }, s, taglayouts)
 end
---for the pidgin tag increase number of masters
--- }}}
- --
 -- vicious.register(mutewidget, vicious.widgets.volume, '<span size="12800">$2</span>', 2, "Master")
 -- Create a systray
 mysystray = widget({ type = "systray" })
@@ -177,10 +179,6 @@ for s = 1, screen.count() do
         layout = awful.widget.layout.horizontal.leftright
       },
       mylayoutbox[s],
-        --mytextclock,
-        --batterywidget,
-        --cpuwidget,
-        --netwidget,
     }
     local widgets_middle = {}
     for delightful_container_index, delightful_container_data in pairs(delightful_container.widgets) do
@@ -198,7 +196,7 @@ for s = 1, screen.count() do
       layout = awful.widget.layout.horizontal.rightleft
     }
     mywibox[s].widgets = awful.util.table.join(widgets_front, widgets_middle, widgets_end)
-  end
+end
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
 ))
@@ -224,8 +222,14 @@ globalkeys = awful.util.table.join(
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
+    awful.key({ modkey, "Control" }, "j", function () 
+        activeScreen = activeScreen % screen.count() + 1
+        awful.screen.focus(activeScreen) 
+    end),
+    awful.key({ modkey, "Control" }, "k", function () 
+        activeScreen = 1 + ((activeScreen-2) % screen.count())
+        awful.screen.focus(activeScreen)
+    end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
     awful.key({ modkey,           }, "Tab",
         function ()
@@ -265,40 +269,34 @@ globalkeys = awful.util.table.join(
     end),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+    awful.key({ modkey },            "r",     function () mypromptbox[1]:run() end),
 
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run({ prompt = "Run Lua code: " },
-                  mypromptbox[mouse.screen].widget,
+                  mypromptbox[1].widget,
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
               end),
 
-    awful.key({ modkey,           }, "c", function () awful.util.spawn_with_shell("echo '" .. selection() .. "'|xclip -i -selection 'clipboard'") end),
     -- Custom Commands
     awful.key({                   }, "Pause", keyboardSwitch),
---    awful.key({                   }, "XF86Sleep", function () awful.util.spawn("hibernate") end),
-    awful.key({ modkey, "Mod1"    }, "c", function () awful.util.spawn("tmux new-window -n \"cmus\" \"cmus\"\; split-window -h \"sleep 0.25; cmus-lyrics\"\; select-pane -L"); --os.execute("sleep 1"); awful.util.spawn("urxvt -T cmus-Songtext -e \"cmus-lyrics\"")
-    end),
-    awful.key({ modkey, "Mod1"    }, "j", function () awful.util.spawn("jdownloader") end),
-    awful.key({ modkey, "Mod1"    }, "o", function () awful.util.spawn("xscreensaver-command -activate") end),
-    awful.key({ modkey, "Mod1"    }, "x", function () awful.util.spawn("tmux new-window \"mc\"") end),
+    -- Shared Commands
     awful.key({ modkey, "Mod1"    }, "f", function () awful.util.spawn("luakit") end),
-    awful.key({ modkey, "Mod1"    }, "p", function () awful.util.spawn("tmux new-window \"irssi -c localhost -w anatid42\"") end),
+    awful.key({ modkey, "Mod1"    }, "c", function () awful.util.spawn("tmux new-window -n \"cmus\" \"cmus\"\; split-window -h \"sleep 0.25; cmus-lyrics\"\; select-pane -L") end ), 
+    awful.key({ modkey, "Mod1"    }, "p", function () awful.util.spawn("tmux new-window \"irssi -c localhost -w ".. ircpass .."\"") end),
+    awful.key({ modkey, "Mod1"    }, "n", function () awful.util.spawn("tmux new-window \"newsbeuter\"") end),
+    awful.key({ modkey, "Mod1"    }, "x", function () awful.util.spawn("tmux new-window \"mc\"") end),
+    awful.key({ modkey, "Mod1"    }, "l", function () awful.util.spawn("xscreensaver-command -lock") end),
+    -- Home Commands
+    awful.key({ modkey, "Mod1"    }, "j", function () awful.util.spawn("jdownloader") end),
     awful.key({ modkey, "Mod1"    }, "t", function () 
       awful.util.spawn("tmux new-window \"mutt\"\\; split-window -h \"mutt -F ~/.work.muttrc\"")
     end),
-    awful.key({ modkey, "Mod1"    }, "n", function () awful.util.spawn("tmux new-window \"newsbeuter\"") end),
     awful.key({ modkey, "Mod1"    }, "m", function () awful.util.spawn("minecraft") end),
-    awful.key({ modkey, "Mod1"    }, "r", function () awful.util.spawn("optirun redeclipse") end),
-    awful.key({ modkey, "Mod1"    }, "b", function () naughty.notify({text=awful.util.pread("grep \"macro index ,[0-9]\" .muttrc|sed \"s/macro index ,\\([0-9]\\) \\\"s=\\(.*\\)<return><return>\\\"/\\1 - \\2/\""), position="bottom_left", width=600, height=300})  end),
     awful.key({                   }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight =100") end),
     awful.key({                   }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight =0") end),
     awful.key({                   }, "XF86WLAN", function () awful.util.spawn("togglewlan toggle") end),
-    awful.key({ modkey, "Mod1"    }, "v", function () awful.util.spawn("dropinventory") end),
-    awful.key({ modkey, "Mod1"    }, "g", function () awful.util.spawn("optirun32 wine \"/home/gitterrost4/.wine/drive_c/Program Files/Guild Wars/Gw.exe\"") end),
-    awful.key({ modkey, "Mod1"    }, "l", function () awful.util.spawn("xscreensaver-command -lock") end),
 
     --Soundeffects
     awful.key({ modkey, "Mod1"    }, "F1", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/buzzer.mp3") end),
@@ -343,28 +341,28 @@ for i = 1, keynumber do
     globalkeys = awful.util.table.join(globalkeys,
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
-                        local screen = mouse.screen
+                        local screen = activeScreen
                         if tags[screen][i] then
                             awful.tag.viewonly(tags[screen][i])
                         end
                   end),
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
-                      local screen = mouse.screen
+                      local screen = activeScreen
                       if tags[screen][i] then
                           awful.tag.viewtoggle(tags[screen][i])
                       end
                   end),
         awful.key({ modkey, "Shift" }, "#" .. i + 9,
                   function ()
-                      if client.focus and tags[client.focus.screen][i] then
-                          awful.client.movetotag(tags[client.focus.screen][i])
+                      if client.focus and tags[activeScreen][i] then
+                          awful.client.movetotag(tags[activeScreen][i])
                       end
                   end),
         awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
                   function ()
-                      if client.focus and tags[client.focus.screen][i] then
-                          awful.client.toggletag(tags[client.focus.screen][i])
+                      if client.focus and tags[activeScreen][i] then
+                          awful.client.toggletag(tags[activeScreen][i])
                       end
                   end))
 end
@@ -418,7 +416,6 @@ awful.rules.rules = {
 }
 -- }}}
 
-
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
 client.add_signal("manage", function (c, startup)
@@ -434,12 +431,12 @@ if(c.class ~= "jd-Main" or not string.find(c.name, "win%d+")) then
 end)
 
 client.add_signal("focus", function(c) 
-  c.border_color = beautiful.border_focus 
+    c.border_color = beautiful.border_focus 
+    activeScreen=c.screen
 end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
-function nprint(arg)
-  print(arg)
-  io.flush()
-end
+-- {{{Startup programs
+awful.util.spawn_with_shell("wmname LG3D")
+
