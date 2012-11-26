@@ -32,7 +32,7 @@ inoremap  <ESC>:!mupdf %:r.pdf>/dev/null 2>&1 &<CR>a
 "inoremap theo*<Tab> \begin{theo*}<CR>\end{theo*}<Esc>O
 "inoremap kor*<Tab> \begin{kor*}<CR>\end{kor*}<Esc>O
 "inoremap hilf*<Tab> \begin{hilf*}<CR>\end{hilf*}<Esc>O
-inoremap <C-l> <Esc>?\\label<CR>yy``P$<Left><C-a><Down>A
+inoremap <C-l> <Esc>?^\s*\\label<CR>yy``P$<Left><C-a><Down>A
 "inoremap lem<Tab> \begin{lem}<CR>\end{lem}<Esc>?\\label<CR>yy``P$<Left><C-a>:noh<CR>o
 "inoremap bem<Tab> \begin{bem}<CR>\end{bem}<Esc>?\\label<CR>yy``P$<Left><C-a>:noh<CR>o
 "inoremap kor<Tab> \begin{kor}<CR>\end{kor}<Esc>?\\label<CR>yy``P$<Left><C-a>:noh<CR>o
