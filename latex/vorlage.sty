@@ -1,0 +1,214 @@
+\ProvidesPackage{vorlage}
+\usepackage{allrunes}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{stmaryrd}
+\usepackage{ulem}
+\usepackage{graphicx}
+\usepackage{pstricks}
+\usepackage{ifthen}
+\usepackage{pst-plot}
+\usepackage{pst-pdf}
+\usepackage{pst-tree}
+\usepackage{calc}
+\usepackage{dsfont}
+\usepackage{mathrsfs}
+%\usepackage{simpsons}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\hypersetup{
+colorlinks,
+citecolor=black,
+filecolor=black,
+linkcolor=black,
+urlcolor=black
+}
+\usepackage{paralist} 
+%---------------------------------Sprachpackages---------------------------------------
+\usepackage[ngerman]{babel}
+%--------------------------------------------------------------------------------------
+%--------------------------------Diverse Deutsche Operatoren---------------------------
+\newcommand{\Alg}{\operatorname{Alg}}
+\newcommand{\aus}{\operatorname{aus}}
+\newcommand{\Auts}{\operatorname{Aut}^\circ}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Bild}{\operatorname{Bild}}
+\newcommand{\capa}{\operatorname{cap}}
+\newcommand{\cf}{\operatorname{cf}}
+\newcommand{\chara}{\operatorname{char}}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\Comp}{\operatorname{Comp}}
+\newcommand{\conv}{\operatorname{conv}}
+\newcommand{\Core}{\operatorname{Core}}
+\newcommand{\dez}{\operatorname{dez}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\dop}{\operatorname{dop}}
+\newcommand{\dx}[1]{\operatorname{d}#1}
+\newcommand{\Einh}{\operatorname{Einh}}
+\newcommand{\ein}{\operatorname{ein}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\epi}{\operatorname{epi}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\essinf}{\operatorname{ess\,inf}}
+\newcommand{\esssup}{\operatorname{ess\,sup}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\FG}{{\operatorname{FG}}}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\FK}{{\operatorname{FK}}}
+\newcommand{\foc}{\operatorname{foc}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\ger}[1]{\textarn{#1}}
+\newcommand{\GF}{\operatorname{GF}}
+\newcommand{\ggT}{\operatorname{ggT}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\grad}{\operatorname{grad}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\hst}{hölderstetig}
+\newcommand{\hyp}{\operatorname{hyp}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\Inn}{\operatorname{Inn}}
+\newcommand{\inn}{\operatorname{int}}
+\newcommand{\Inv}{\operatorname{Inv}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\jac}[2]{\leg{#1}{#2}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Kern}{\operatorname{Kern}}
+\newcommand{\kgV}{\operatorname{kgV}}
+\newcommand{\leg}[2]{\left(\frac{#1}{#2}\right)}
+\newcommand{\lst}{lipschitzstetig}
+\newcommand{\mal}{\cdot}
+\newcommand{\Min}{\operatorname{Min}}
+\newcommand{\Mor}{\operatorname{Mor}}
+\newcommand{\mre}{metrische Räume}
+\newcommand{\mr}{metrischer Raum}
+\newcommand{\nahe}[2]{\Sigma_{#1\setminus #2}}
+\newcommand{\nb}[1]{\underset{#1}{\sim}}
+\newcommand{\nre}{normierte Räume}
+\newcommand{\nr}{normierter Raum}
+\newcommand{\ohne}{\setminus}
+\newcommand{\opt}{\operatorname{opt}}
+\newcommand{\op}{\operatorname{op}}
+\newcommand{\Out}{\operatorname{Out}}
+\newcommand{\pfeil}[1]{\stackrel{#1}{\to}}
+\newcommand{\proj}{\operatorname{proj}}
+\newcommand{\rang}{\operatorname{rang}}
+\newcommand{\reff}[1]{\eqref{#1}}
+\newcommand{\refl}{\operatorname{ref}}
+\newcommand{\res}{\,\rule[-2mm]{0.1mm}{5mm}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\Soc}{\operatorname{Soc}}
+\newcommand{\sol}{\operatorname{sol}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\spur}{\operatorname{spur}}
+\newcommand{\Syl}[1]{\operatorname{Syl}_{#1}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\Trace}{\operatorname{Tr}}
+\newcommand{\val}{\operatorname{val}}
+\newcommand{\viel}{\operatorname{viel}}
+\renewcommand{\hat}{\widehat}
+\renewcommand{\tilde}{\widetilde}
+%--------------------------------------------------------------------------------------
+%----------------------------------"Behauptungsumgebung"-------------------------------
+\newtheoremstyle{definition2}{\topsep}{1em}{}{}{\bfseries}{}{ }{\thmnumber{(#2) }\thmname{#1}\thmnote{ (#3)}.}
+\newtheoremstyle{satz2}{\topsep}{1em}{\itshape}{}{\bfseries}{}{ }{\thmnumber{(#2) }\thmname{#1}\thmnote{ (#3)}.}
+\theoremstyle{definition2}
+%\ifthenelse{\equal{\usesubsect}{1}}{\newtheorem{def2}{Definition}[subsection]}{\newtheorem{def2}{Definition}[section]}
+\newtheorem{def2}{Definition}[section]
+\newtheorem{definition}{Definition}
+\newtheorem*{def2*}{Definition}
+\newtheorem{bez}[def2]{Bezeichnung}
+\newtheorem*{bez*}{Bezeichnung}
+\newtheorem*{definition*}{Definition}
+\newtheorem{anw}[def2]{Anwendungen}
+\newtheorem*{anw*}{Anwendungen}
+\newtheorem{hinw}[def2]{Hinweis}
+\newtheorem{hinweis}[def2]{Hinweis}
+\newtheorem*{hinw*}{Hinweis}
+\newtheorem*{hinweis*}{Hinweis}
+\newtheorem{unbeisp}[def2]{Unbeispiel}
+\newtheorem*{unbeisp*}{Unbeispiel}
+\newtheorem{beisp}[def2]{Beispiel}
+\newtheorem{beispiel}[def2]{Beispiel}
+\newtheorem*{beisp*}{Beispiel}
+\newtheorem*{beispiel*}{Beispiel}
+\newtheorem{defbeisp}[def2]{Definition und Beispiel}
+\newtheorem*{defbeisp*}{Definition und Beispiel}
+\newtheorem{defbem}[def2]{Definition und Bemerkung}
+\newtheorem*{defbem*}{Definition und Bemerkung}
+\newtheorem{alg}[def2]{Algorithmus}
+\newtheorem*{alg*}{Algorithmus}
+\newtheorem{hist}[def2]{Historisches}
+\newtheorem*{hist*}{Historisches}
+\newtheorem{app}[def2]{Appendix}
+\newtheorem*{app*}{Appendix}
+\newtheorem{nota}[def2]{Notation}
+\newtheorem{notation}[def2]{Notation}
+\newtheorem*{nota*}{Notation}
+\newtheorem*{notation*}{Notation}
+\newtheorem{einlnot}[def2]{Einleitung und Notation}
+\newtheorem*{einlnot*}{Einleitung und Notation}
+\newtheorem{bem}[def2]{Bemerkung}
+\newtheorem{bemerkung}[def2]{Bemerkung}
+\newtheorem*{bem*}{Bemerkung}
+\newtheorem*{bemerkung*}{Bemerkung}
+%\renewcommand{\thebeh}{\hspace{-0,5em}}
+\theoremstyle{satz2}
+\newtheorem{beh}[def2]{Behauptung}
+\newtheorem{behauptung}[def2]{Behauptung}
+\newtheorem*{beh*}{Behauptung}
+\newtheorem*{behauptung*}{Behauptung}
+\newtheorem{folg}[def2]{Folgerung}
+\newtheorem{folgerung}[def2]{Folgerung}
+\newtheorem*{folg*}{Folgerung}
+\newtheorem*{folgerung*}{Folgerung}
+\newtheorem{kor}[def2]{Korollar}
+\newtheorem{korollar}[def2]{Korollar}
+\newtheorem*{kor*}{Korollar}
+\newtheorem*{korollar*}{Korollar}
+\newtheorem{form}[def2]{Formalisierung}
+\newtheorem*{form*}{Formalisierung}
+\newtheorem{satz}[def2]{Satz}
+\newtheorem*{satz*}{Satz}
+\newtheorem{voraus}[def2]{Voraussetzung}
+\newtheorem{theo}[def2]{Theorem}
+\newtheorem{theorem}[def2]{Theorem}
+\newtheorem{theo*}{Theorem}
+\newtheorem{theorem*}{Theorem}
+\newtheorem*{voraus*}{Voraussetzung}
+\newtheorem*{genvoraus*}{Generalvoraussetzung}
+\newtheorem{genvoraus}{Generalvoraussetzung}
+\newtheorem{vorb}[def2]{Vorbereitung}
+\newtheorem*{vorb*}{Vorbereitung}
+\newtheorem{lem}[def2]{Lemma}
+\newtheorem{lemma}[def2]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{hilf}[def2]{Hilfssatz}
+\newtheorem{hilfssatz}[def2]{Hilfssatz}
+\newtheorem*{hilf*}{Hilfssatz}
+\newtheorem*{hilfssatz*}{Hilfssatz}
+\newtheorem{erinn}[def2]{Erinnerung}
+\newtheorem*{erinn*}{Erinnerung}
+\newtheorem{haupt}[def2]{Hauptsatz}
+\newtheorem*{haupt*}{Hauptsatz}
+\newtheorem{hilfglaub}[def2]{Hilfsmittel, die wir glauben}
+\newtheorem*{hilfglaub*}{Hilfsmittel, die wir glauben}
+\newtheorem{prop}[def2]{Proposition}
+\newtheorem*{prop*}{Proposition}
+%\newenvironment{beisp}{\addtocounter{def2}{1}\begin{flushleft}\textbf{Beispiel \arabic{section}.\arabic{def2}}\end{flushleft}\begin{quote}}{\end{quote}}
+%\newenvironment{beisp*}{\begin{flushleft}\textbf{Beispiel}\end{flushleft}\begin{quote}}{\end{quote}}
+\newtheorem{satzdef}[def2]{Satz und Definition}
+%---------------Verhindere Umbruch von inline-Mathe-Umgebungen-------------------------
+%\relpenalty=10000
+%\binoppenalty=10000
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+%--------------------------------------------------------------------------------------
+%----------------------Mein Standard Einleitungssatz-----------------------------------
+%--------------------------------------------------------------------------------------
+%------------------------Command für Vollständige Induktion:---------------------------
