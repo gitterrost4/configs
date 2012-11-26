@@ -4,6 +4,7 @@ endif
 if &term=="screen-256color"
     set t_Co=256
 endif
+let g:Imap_UsePlaceHolders = 0 "For latex-suite
 syntax on
 filetype plugin on
 filetype indent on
