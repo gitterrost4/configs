@@ -35,7 +35,12 @@ set beep_new
 set auto_tag
 
 color index brightred default "~N|~O"
+
 set alias_file= ~/.mutt/aliases
 set sort_alias= alias
 set reverse_alias=yes
 source $alias_file
+
+bind index <insert> tag-entry
+macro index * "T*<return>"
+
