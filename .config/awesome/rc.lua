@@ -307,8 +307,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Mod1"    }, "h", function () awful.util.spawn("hibernate") end),
     awful.key({ modkey, "Mod1"    }, "m", function () awful.util.spawn("mysqlstart") end),
     awful.key({ modkey, "Mod1"    }, "t", function () 
-        awful.util.spawn("tmux new-window \"mutt\"")
-    end),
+        awful.util.spawn("tmux new-window \"mutt -F .work.muttrc\"")
+    end)
 
 )
 
