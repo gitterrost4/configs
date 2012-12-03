@@ -3,7 +3,7 @@ URxvt*background:	#000000
 URxvt*foreground:	#FFFFFF
 URxvt.urgentOnBell:	true
 URxvt.perl-ext-common: url-select
-URxvt.urlLauncher:     luakit
+URxvt.urlLauncher:     firefox-bin
 URxvt.underlineURLs:   true
 URxvt.keysym.M-u:      perl:url-select:select_next
 URxvt.urgentOnBell: true

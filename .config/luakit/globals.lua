@@ -56,6 +56,7 @@ search_engines = {
     google      = "https://google.com/search?q=%s",
     imdb        = "http://www.imdb.com/find?s=all&q=%s",
     wikipedia   = "https://en.wikipedia.org/wiki/Special:Search?search=%s",
+    bugzilla    = "https://bugzilla.hal.dbrent.net/buglist.cgi?quicksearch=%s",
 }
 
 -- Set google as fallback search engine

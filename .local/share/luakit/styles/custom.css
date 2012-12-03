@@ -1,5 +1,5 @@
 * {
-  font-family:inconsolata; 
+  font-family:inconsolata !important; 
+  font-size: 9pt;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility; 
 }
