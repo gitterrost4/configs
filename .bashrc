@@ -71,7 +71,7 @@ export GDK_NATIVE_WINDOWS=1
 _JAVA_AWT_WM_NONREPARENTING=1; export _JAVA_AWT_WM_NONREPARENTING
 set -o vi
 export PATH=$PATH:/sbin
-export PS1="\[\033[0;31m\]\t \[\033[0;32m\][\!] \[\033[0m\]\u:\[\033[1;33m\]\w\`if [ \$? -ne "0" ]; then echo '\[\033[1;31m\] F '; fi\`\[\033[0m\]\$ "
+export PS1="\[\033[0;31m\]\t \[\033[0;32m\][\!] \[\033[0m\]\u:\[\033[1;33m\]\w\[\033[0;33m\]\`__git_ps1\`\`if [ \$? -ne "0" ]; then echo '\[\033[1;31m\] F '; fi\`\[\033[0m\]\$ "
 source /usr/share/cdargs/cdargs-bash.sh
 source ~/.bash_alias
 export EDITOR=/usr/bin/vim
