@@ -3,3 +3,8 @@
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility; 
 }
+
+textarea,input,select {
+    color: white !important;
+    background-color: black !important;
+}

@@ -299,12 +299,14 @@ globalkeys = awful.util.table.join(
     awful.key({                   }, "XF86WLAN", function () awful.util.spawn("togglewlan toggle") end),
 
     --Soundeffects
-    awful.key({ modkey, "Mod1"    }, "F1", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/buzzer.mp3") end),
-    awful.key({ modkey, "Mod1"    }, "F2", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/cricket.mp3") end),
-    awful.key({ modkey, "Mod1"    }, "F3", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/jeopardy.mp3") end),
-    awful.key({ modkey, "Mod1"    }, "F4", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/trombone.mp3") end),
-    awful.key({ modkey, "Mod1"    }, "F5", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/badummtss.mp3") end),
-    awful.key({ modkey, "Mod1"    }, "F6", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/bazinga.mp3") end),
+    awful.key({ modkey, "Mod1"    }, "F1", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/buzzer.mp3") end), --1
+    awful.key({ modkey, "Mod1"    }, "F2", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/cricket.mp3") end),--2
+    awful.key({ modkey, "Mod1"    }, "F3", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/jeopardy.mp3") end),--3
+    awful.key({ modkey, "Mod1"    }, "F4", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/trombone.mp3") end),--4
+    awful.key({ modkey, "Mod1"    }, "F5", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/badummtss.mp3") end),--5
+    awful.key({ modkey, "Mod1"    }, "F6", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/nein.mp3") end),--6
+    awful.key({ modkey, "Mod1"    }, "F7", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/bazinga.mp3") end),--7
+    awful.key({ modkey, "Mod1"    }, "F8", function () awful.util.spawn("mplayer /home/gitterrost4/sounds/applause.mp3") end),--8
     awful.key({ modkey, "Mod1"    }, "Delete", function () awful.util.spawn("killall mplayer") end)
     
 
