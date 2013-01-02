@@ -26,7 +26,6 @@ macro pager ,3 "s=MoMeePro<return><return>$<return>"
 macro pager ,4 "s=Sanity<return><return>$<return>"
 macro pager ,5 "s=Blubberecke<return><return>$<return>"
 macro index i "c=INBOX<return>"
-macro index <Return> <display-message><sync-mailbox>
 set timeout=90
 set mail_check=60
 unset imap_passive

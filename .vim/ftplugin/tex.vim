@@ -101,6 +101,13 @@ function! Checkmathmode(math, nomath)
   return a:nomath
 endfunction
 
+inoremap ae<Tab> "a
+inoremap ue<Tab> "u
+inoremap oe<Tab> "o
+inoremap Ae<Tab> "A
+inoremap Ue<Tab> "U
+inoremap Oe<Tab> "O
+inoremap ss<Tab> "s
 "inoremap <expr> ( Checkmathmode("\\left(","(")
 "inoremap <expr> ) Checkmathmode("\\right)",")")
 "inoremap (<Tab> \left(

@@ -4,7 +4,7 @@
 
 # If not running interactively, do not do anything
 export EDITOR=vi
-export PATH=$HOME/bin:$HOME/cmus/bin:$PATH:/usr/sbin
+export PATH=$HOME/scripts:$HOME/bin:$HOME/cmus/bin:$PATH:/usr/sbin
 [[ $- != *i* ]] && return
 #[[ $TERM != "screen-256color" ]] && ( tmux -q has-session && exec tmux attach-session || exec tmux new-session ) && exit
 # don't put duplicate lines in the history. See bash(1) for more options
