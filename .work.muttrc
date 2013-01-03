@@ -5,6 +5,8 @@ set header_cache =~/.mutt/cache/headers_work
 set message_cachedir =~/.mutt/cache/bodies_work
 set certificate_file =~/.mutt/certificates_work
 
+mailboxes =INBOX =bugzilla-daemon =Sanity =release =Blubberecke =MoMeePro
+
 set imap_idle = yes
 set charset="utf-8"
 set editor="vi"
@@ -28,6 +30,17 @@ macro pager ,5 "s=Blubberecke<return><return>$<return>"
 macro index i "c=INBOX<return>"
 set timeout=90
 set mail_check=60
+set imap_check_subscribed=yes
+set sidebar_visible=yes
+set sidebar_width=30
+bind index \cp sidebar-prev
+bind index \cn sidebar-next
+bind index \co sidebar-open
+bind index,pager \253 sidebar-prev
+bind index,pager \252 sidebar-next
+bind pager \cp sidebar-prev
+bind pager \cn sidebar-next
+bind pager \co sidebar-open
 unset imap_passive
 color status black green
 set beep_new

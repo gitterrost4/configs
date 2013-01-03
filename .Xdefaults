@@ -10,6 +10,7 @@ URxvt.urgentOnBell: true
 URxvt.secondaryWheel: true
 URxvt.scrollBar: false
 URxvt.secondaryScroll: false
+urxvt*metaSendsEscape:    true
 emacs*Background: Black
 emacs*Foreground: White
 emacs*pointerColor: Green
