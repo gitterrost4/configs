@@ -45,3 +45,4 @@ bind index <insert> tag-entry
 macro index * "T*<return>"
 
 auto_view text/calendar
+auto_view text/html
