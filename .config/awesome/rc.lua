@@ -291,7 +291,10 @@ globalkeys = awful.util.table.join(
     -- Home Commands
     awful.key({ modkey, "Mod1"    }, "j", function () awful.util.spawn("jdownloader") end),
     awful.key({ modkey, "Mod1"    }, "t", function () 
-      awful.util.spawn("tmux new-window \"mutt\"\\; split-window -h \"mutt -F ~/.work.muttrc\"; select-pane -L")
+      awful.util.spawn("tmux new-window \"mutt\"")
+    end),
+    awful.key({ modkey, "Mod1"    }, "w", function () 
+      awful.util.spawn("tmux new-window -n workmutt \"mutt -F ~/.work.muttrc\"")
     end),
     awful.key({ modkey, "Mod1"    }, "m", function () awful.util.spawn("minecraft") end),
     awful.key({                   }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight =100") end),
