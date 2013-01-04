@@ -34,8 +34,8 @@ set imap_check_subscribed=yes
 set sidebar_visible=yes
 set sidebar_width=30
 color sidebar_new yellow default
-bind index,pager h sidebar-prev
-bind index,pager n sidebar-next
+bind index,pager n sidebar-prev
+bind index,pager h sidebar-next
 bind index,pager t sidebar-open
 unset imap_passive
 color status black green
