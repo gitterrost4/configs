@@ -67,3 +67,7 @@ let g:tagbar_foldlevel = 0
 let g:tagbar_compact = 1
 let g:tagbar_autoshowtag = 0
 map <F3> :PhpSearchContext<CR>
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set list
+highlight SpecialKey term=bold ctermfg=8 gui=bold guifg=Gray
+highlight NonText term=bold ctermfg=8 gui=bold guifg=Gray

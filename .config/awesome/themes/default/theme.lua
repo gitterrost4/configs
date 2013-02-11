@@ -78,7 +78,7 @@ theme.titlebar_close_button_focus  = "/usr/share/awesome/themes/default/titlebar
 --theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/default/titlebar/maximized_focus_active.png"
 
 -- You can use your own command to set your wallpaper
-theme.wallpaper_cmd = { "awsetbg -c " .. awful.util.getdir("config") .. "/themes/default/background_piraten.jpg" }
+theme.wallpaper_cmd = { "awsetbg -c " .. awful.util.getdir("config") .. "/themes/default/vim-shortcuts.png" }
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"
