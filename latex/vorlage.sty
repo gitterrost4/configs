@@ -119,7 +119,13 @@ urlcolor=black
 %----------------------------------"Behauptungsumgebung"-------------------------------
 \newtheoremstyle{definition2}{\topsep}{1em}{}{}{\bfseries}{}{ }{\thmnumber{(#2) }\thmname{#1}\thmnote{ (#3)}.}
 \newtheoremstyle{satz2}{\topsep}{1em}{\itshape}{}{\bfseries}{}{ }{\thmnumber{(#2) }\thmname{#1}\thmnote{ (#3)}.}
+\theoremstyle{definition}
+\newtheorem{odef2}{Definition}
+\theoremstyle{theorem}
 \newtheorem{schritt}{Schritt}
+\newtheorem{osatz}[odef2]{Satz}
+\newtheorem{olem}[odef2]{Lemma}
+\newtheorem{oprop}[odef2]{Proposition}
 \theoremstyle{definition2}
 %\ifthenelse{\equal{\usesubsect}{1}}{\newtheorem{def2}{Definition}[subsection]}{\newtheorem{def2}{Definition}[section]}
 \newtheorem{def2}{Definition}[section]

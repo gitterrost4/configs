@@ -30,5 +30,4 @@ set nosb
 highlight HintElem background:rgba(255,200,0,0.5);
 map <F10> :set<Space>toolbars=tabs<CR>
 map <F9> :set<Space>toolbars=notabs<CR>
-set toolbars=notabs
 

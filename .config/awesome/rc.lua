@@ -282,19 +282,19 @@ globalkeys = awful.util.table.join(
     -- Custom Commands
     awful.key({                   }, "Pause", keyboardSwitch),
     -- Shared Commands
-    awful.key({ modkey, "Mod1"    }, "f", function () awful.util.spawn("luakit") end),
-    awful.key({ modkey, "Mod1"    }, "c", function () awful.util.spawn("tmux new-window -n \"cmus\" \"cmus\"\; split-window -h \"sleep 0.25; cmus-lyrics\"\; select-pane -L") end ), 
-    awful.key({ modkey, "Mod1"    }, "p", function () awful.util.spawn("tmux new-window \"irssi -c localhost -w ".. ircpass .."\"") end),
+    awful.key({ modkey, "Mod1"    }, "f", function () awful.util.spawn("firefox-bin") end),
+    awful.key({ modkey, "Mod1"    }, "c", function () awful.util.spawn("tmux new-window -n \"cmus\" \"cmus\"\; swap-window -t 3; split-window -h \"sleep 0.25; cmus-lyrics\"\; select-pane -L") end ), 
+    awful.key({ modkey, "Mod1"    }, "p", function () awful.util.spawn("tmux new-window \"irssi -c localhost -w ".. ircpass .."\"; swap-window -t 0") end),
     awful.key({ modkey, "Mod1"    }, "n", function () awful.util.spawn("tmux new-window \"newsbeuter\"") end),
     awful.key({ modkey, "Mod1"    }, "x", function () awful.util.spawn("tmux new-window \"mc\"") end),
     awful.key({ modkey, "Mod1"    }, "l", function () awful.util.spawn("xscreensaver-command -lock") end),
     -- Home Commands
     awful.key({ modkey, "Mod1"    }, "j", function () awful.util.spawn("jdownloader") end),
     awful.key({ modkey, "Mod1"    }, "t", function () 
-      awful.util.spawn("tmux new-window \"mutt\"")
+      awful.util.spawn("tmux new-window \"mutt\"; swap-window -t 1")
     end),
     awful.key({ modkey, "Mod1"    }, "w", function () 
-      awful.util.spawn("tmux new-window -n workmutt \"mutt -F ~/.work.muttrc\"")
+      awful.util.spawn("tmux new-window -n workmutt \"mutt -F ~/.work.muttrc\"; swap-window -t 2")
     end),
     awful.key({ modkey, "Mod1"    }, "m", function () awful.util.spawn("minecraft") end),
     awful.key({                   }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight =100") end),
@@ -409,9 +409,9 @@ awful.rules.rules = {
     { rule = { class = "Chromium" },
       properties = { tag = tags[1][2], fullscreen = true } },
     { rule = { name = "<unknown>" },
-      properties = { fullscreen=true, floating=true, tag = tags[1][2] } },
+      properties = { fullscreen=true, tag = tags[1][2] } },
     { rule = { class = "Exe"}, 
-      properties = {floating = true, tag = tags[1][2]} },
+      properties = { tag = tags[1][2]} },
     { rule = { class = "MPlayer" },
       properties = { tag = tags[1][3] } },
     { rule = { class = "mplayer2" },
